@@ -1,5 +1,8 @@
 public class UnusualValueDetector {
 
+    // the value = resultant of three axis-wise vector
+    private double resultant=0;
+
     // object responsible for calculating standard deviation and mean
     private StandardDeviationMean standardDeviationMean;
 
@@ -32,7 +35,7 @@ public class UnusualValueDetector {
         // calculate if current data(resultant) is unusual or not
 
         // resultant of three axis-wise vectors
-        double resultant = Math.sqrt(x*x + y*y + z*z);
+        this.resultant = Math.sqrt(x*x + y*y + z*z);
 
         // the resultants are the samples for mean & standard deviation calculation
         standardDeviationMean.addSample(resultant);
@@ -54,7 +57,7 @@ public class UnusualValueDetector {
 
             // call the response method if responder was assigned
             if(unusualValueResponse!=null)
-                unusualValueResponse.unusualValueDetected();
+                unusualValueResponse.unusualValueDetected("unusual value = "+standardDeviationMean.getX());
 
         }
 
@@ -71,6 +74,11 @@ public class UnusualValueDetector {
 
 
     // getters & setters
+
+    public double getResultant() {
+        return resultant;
+    }
+
     public StandardDeviationMean getStandardDeviationMean() {
         return standardDeviationMean;
     }
@@ -85,7 +93,7 @@ public class UnusualValueDetector {
     public interface unusualValueResponse{
 
         // invoked by the implementer when unusual value is detected
-        void unusualValueDetected();
+        void unusualValueDetected(String message);
 
     }
 }
