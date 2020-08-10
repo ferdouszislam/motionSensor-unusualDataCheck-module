@@ -10,16 +10,17 @@ public class StandardDeviationMean {
     }
 
     public void addSample(double X){
+        // update the mean & standard deviation with the new sample
 
         this.X = X;
 
+        // mean calculation
         sumOfAllData+=X;
         numberOfData++;
-
         mean = sumOfAllData/numberOfData;
 
+        // standard deviation calculation
         sumOfXMinusMeanWholeSquare += (X-mean)*(X-mean);
-
         standardDeviation = Math.sqrt(sumOfXMinusMeanWholeSquare/numberOfData);
 
     }
