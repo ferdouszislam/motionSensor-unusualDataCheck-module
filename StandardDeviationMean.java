@@ -1,4 +1,9 @@
+import java.util.LinkedList;
+
 public class StandardDeviationMean {
+
+    // need to keep track of all distinct values for standard deviation calculation
+    private LinkedList<Double> Xs = new LinkedList<>();
 
     // necessary for calculating mean & standard deviation
     private double sumOfAllData = 0, numberOfData = 0, sumOfXMinusMeanWholeSquare = 0;
@@ -14,13 +19,18 @@ public class StandardDeviationMean {
 
         this.X = X;
 
+        // linked list size is not limited (or at least 10^9, which is large enough)
+        Xs.add(X);
+
         // mean calculation
-        sumOfAllData+=X;
-        numberOfData++;
+        sumOfAllData = 0;
+        Xs.forEach( (x) -> sumOfAllData+=x );
+        numberOfData = Xs.size();
         mean = sumOfAllData/numberOfData;
 
         // standard deviation calculation
-        sumOfXMinusMeanWholeSquare += (X-mean)*(X-mean);
+        sumOfXMinusMeanWholeSquare = 0;
+        Xs.forEach( (x) -> sumOfXMinusMeanWholeSquare += (x-mean)*(x-mean) ); // have to do this everytime mean changes
         standardDeviation = Math.sqrt(sumOfXMinusMeanWholeSquare/numberOfData);
 
     }
