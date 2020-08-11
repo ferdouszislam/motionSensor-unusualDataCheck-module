@@ -2,7 +2,7 @@ import java.util.LinkedList;
 
 public class StandardDeviationMean {
 
-    // need to keep track of all distinct values for standard deviation calculation
+    // need to keep track of all values for standard deviation calculation
     private LinkedList<Double> Xs = new LinkedList<>();
 
     // necessary for calculating mean & standard deviation
